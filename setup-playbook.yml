@@ -1,7 +1,6 @@
 ---
 - name: Basic System setup
   hosts: localhost
-  become: true
   tasks:
     - name: Update all security-related packages
       ansible.builtin.package:
