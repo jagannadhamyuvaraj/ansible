@@ -1,0 +1,19 @@
+---
+- name: Basic system Setup
+  hosts: localhost
+  become: true
+  vars:
+    username: "yuvaraj"
+    package_state: "latest"
+    security_only: true
+  tasks:
+    - name: update all security-related packages
+      ansible.builtin.package:
+        name: "*"
+        state: "{{ package_state}}"
+        security: " {{ security_only }}"
+    - name: creating a new user
+      ansible.builtin.user:
+        name: "{{ username}}"
+        state: present
+        create_home: true
