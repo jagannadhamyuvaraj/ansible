@@ -1,0 +1,22 @@
+---
+- hosts: all
+  gather_facts: yes
+  become: true
+
+  tasks:
+    - name: Install tac command
+      user:
+        name: mike
+        state: present
+      when: ansible_facts['distribution'] == "RedHat"
+      tags:
+        - install
+
+    - name: Install shuf command
+      apt:
+        name: mtr
+        state: present
+      when: ansible_facts['distribution'] == "Ubuntu"
+      tags:
+        - shuf
+...
