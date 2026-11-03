@@ -1,0 +1,19 @@
+- name: query the people in space API
+  hosts: all
+  connection: ansible.builtin.local
+  gather_facts: no
+
+  tasks:
+    - name: call teh open-notify API for current astronauts
+      ansible.builtin.url:
+        url: http://api.open-notify.org/astros.json
+        method: GET
+        return_content: true
+        status_code: 200
+        headers:
+          Accept: application/json
+      register: space_data
+      
+    - name: Display raw json response
+      ansible.builtin.debug:
+        var: space_data.json
