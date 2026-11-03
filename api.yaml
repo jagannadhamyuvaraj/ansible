@@ -5,7 +5,7 @@
 
   tasks:
     - name: call teh open-notify API for current astronauts
-      ansible.builtin.url:
+      ansible.builtin.uri:
         url: http://api.open-notify.org/astros.json
         method: GET
         return_content: true
